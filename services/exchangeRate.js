@@ -11,8 +11,18 @@ class ExchangeRateService {
 
   async get(symbol) {
     //TODO: VALIDATE FIRTS IN REDIS
-    const rate = await this.httpRequest.get(RATES_ENDPOINT, `&symbols=${symbol}`);
-    return { date: rate.date, base: rate.base, ...rate.rates }
+    const exRate = await this.httpRequest.get(
+      RATES_ENDPOINT,
+      `&symbols=${symbol}`
+    );
+    if (exRate && exRate.rates && exRate.rates[symbol]) {
+      return {
+        currencyDate: exRate.date,
+        currencyBase: exRate.base,
+        currencyRate: exRate.rates[symbol],
+      };
+    }
+    return {};
   }
 }
 

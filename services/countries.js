@@ -1,4 +1,3 @@
-
 //const { ipsMock } = require('../utils/mocks/ips'); // TODO: BORRAR MOCK
 
 const MongoLib = require('../lib/mongo');
@@ -9,13 +8,15 @@ class CountriesService {
     this.mongoDB = new MongoLib();
   }
 
-
-  async getCountry(code) {
-    const countries = await this.mongoDB.getAll(
-      this.collection,
-      {countryCode3: code}
-    );
-    return countries.length > 0 ? countries[0] : {};
+  async getCountry(countryCode) {
+    const countries = await this.mongoDB.getAll(this.collection, {
+      countryCode,
+    });
+    if (countries.length > 0) {
+      delete countries[0]._id;
+      return countries[0];
+    }
+    return {};
   }
 
   async createCountry(data) {

@@ -4,8 +4,11 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "dev": "set DEBUG=app:* && nodemon server",
-    "start": "set NODE_ENV=production && node server"
+    "dev:win": "set DEBUG=app:* && nodemon server",
+    "start:win": "set NODE_ENV=production && node server",
+    "test": "mocha --exit",
+    "dev": "DEBUG=app:* && nodemon server",
+    "start": "NODE_ENV=production && node server"
   },
   "keywords": [],
   "author": "",
