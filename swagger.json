@@ -1,0 +1,56 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Provide information associated with an IP that allows the execution of response actions against fraud.",
+    "version": "1.0.0",
+    "title": "IPs Information API",
+    "contact": {
+      "email": "pericoandrea@gmail.com"
+    }
+  },
+  "host": "localhost:3000",
+  "basePath": "/api/ips",
+  "tags": [
+    {
+      "name": "IPs address information"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/{ip}": {
+      "get": {
+        "tags": [
+          "IPs address information"
+        ],
+        "summary": "Get and validate information about an IP address",
+        "description": "",
+        "operationId": "validate",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ip",
+            "type": "string",
+            "required": true,
+            "description": "A valid IP address V4 or V6"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns info related to the IP Address"
+          },
+          "400": {
+            "description": "\\\"ip\\\" must be a valid ip address of one of the following versions [ipv4,ipv6] with a forbidden CIDR"
+          },
+          "404": {
+            "description": "Resource Not Found"
+          }
+        }
+      }
+    }
+  }
+}
