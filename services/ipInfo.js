@@ -4,7 +4,7 @@ const { config } = require('../config/index');
 const URL = config.ip2countryUrl;
 const ENDPOINT = config.ip2countryEndpoint;
 
-class CountriesInfoService {
+class IpInfoService {
   constructor() {
     this.httpRequest = new HttpRequest(URL);
   }
@@ -25,4 +25,4 @@ class CountriesInfoService {
   }
 }
 
-module.exports = CountriesInfoService;
+module.exports = IpInfoService;

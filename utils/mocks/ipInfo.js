@@ -1,4 +1,4 @@
-const countriesInfoMock = [
+const ipInfoMock = [
   {
     ip: "169.168.199.86",
     countryName: 'Denmark',
@@ -51,14 +51,14 @@ const countriesInfoMock = [
     },
 ];
 
-function findCountryInfoMock(ip) {
-  return countriesInfoMock.find((ipInfo) =>
-    ipInfo.ip.match(ip));
+function findIpInfoMock(ip) {
+  const ipMock = ipInfoMock.find((ipInfo) => ipInfo.ip.match(ip));
+  return {...ipMock, countryCode3: ipMock.countryCode}
 }
 
-class CountriesInfoServiceMock {
+class IpInfoServiceMock {
   async get({ ip }){
-    const {countryName, countryCode} = findCountryInfoMock(ip);
+    const {countryName, countryCode} = findIpInfoMock(ip);
     return Promise.resolve({
       countryName,
       countryCode
@@ -66,7 +66,7 @@ class CountriesInfoServiceMock {
   }
 }
 module.exports = {
-  countriesInfoMock,
-  findCountryInfoMock,
-  CountriesInfoServiceMock
+  ipInfoMock,
+  findIpInfoMock,
+  IpInfoServiceMock
 };

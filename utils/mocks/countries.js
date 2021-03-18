@@ -72,16 +72,18 @@ const countriesMock = [
 ];
 
 function filteredCountriesMock(countryCode) {
-  return countriesMock.find((country) =>
-    country.countryCode.match(countryCode)
-  ) || {};
+  return countriesMock.filter((country) =>
+    country.countryCode.includes(countryCode)
+  );
 }
 
 class CountriesServiceMock {
   async getCountry(countryCode){
-    const countryInfo = filteredCountriesMock(countryCode);
-    delete countryInfo._id;
-    return Promise.resolve(countryInfo);
+    const countryDB = countriesMock.find((country) =>
+    country.countryCode.match(countryCode)
+  ) || {};
+    delete countryDB._id;
+    return Promise.resolve(countryDB);
   }
 
   async createCountry(){

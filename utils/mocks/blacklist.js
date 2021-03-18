@@ -1,4 +1,4 @@
-const ipsMock = [
+const blacklistMock = [
   { _id: { $oid: '60522166fc13ae2d95000000' }, ip: '68.150.35.145' },
   { _id: { $oid: '60522166fc13ae2d95000001' }, ip: '204.149.76.27' },
   { _id: { $oid: '60522166fc13ae2d95000002' }, ip: '9.14.254.130' },
@@ -11,22 +11,24 @@ const ipsMock = [
   { _id: { $oid: '60522166fc13ae2d95000009' }, ip: '84.44.100.189' },
 ];
 
-function filteredIpsMock(ip) {
-  return ipsMock.find((ipInfo) =>
-    ipInfo.ip.match(ip)
-  ) || {};
+function filteredBlacklistMock(ip) {
+  return blacklistMock.filter((blacklist) =>
+    blacklist.ip.includes(ip)
+  );
 }
 
 class BlacklistServiceMock {
   async getIp({ip}){
-    return Promise.resolve(filteredIpsMock(ip));
+    return Promise.resolve(blacklistMock.find((ipInfo) =>
+    ipInfo.ip.match(ip)
+  ) || {});
   }
   async createIp(){
-    return Promise.resolve(ipsMock[0]._id);
+    return Promise.resolve(blacklistMock[0]._id);
   }
 }
 module.exports = {
-  ipsMock,
-  filteredIpsMock,
+  blacklistMock,
+  filteredBlacklistMock,
   BlacklistServiceMock
 };

@@ -1,9 +1,9 @@
 const assert = require('assert');
-const proxyquire = require('proxyquire');
+const proxyquire = require('proxyquire').noPreserveCache();
 
 const { CountriesServiceMock } = require('../utils/mocks/countries.js');
-const { BlacklistServiceMock } = require('../utils/mocks/ips.js');
-const { CountriesInfoServiceMock } = require('../utils/mocks/countriesInfo.js');
+const { BlacklistServiceMock } = require('../utils/mocks/blacklist.js');
+const { IpInfoServiceMock } = require('../utils/mocks/ipInfo.js');
 const {
   CurrenciesInfoServiceMock,
   ExRateServiceMock,
@@ -15,7 +15,7 @@ describe('routes - ips', function () {
   const controller = proxyquire('../controllers/ips', {
     '../services/blacklist': BlacklistServiceMock,
     '../services/countries': CountriesServiceMock,
-    '../services/countriesInfo': CountriesInfoServiceMock,
+    '../services/ipInfo': IpInfoServiceMock,
     '../services/currenciesInfo': CurrenciesInfoServiceMock,
     '../services/exchangeRate': ExRateServiceMock,
   });
@@ -42,7 +42,7 @@ describe('routes - ips', function () {
       });
     });
 
-    it('should respond the information about the IP address', function (done) {
+    it('should respond the information about the IP address from countries collection mock', function (done) {
       request.get('/api/ips/4.59.254.177').end((err, res) => {
         assert.deepStrictEqual(res.body, {
           success: true,
@@ -55,6 +55,25 @@ describe('routes - ips', function () {
             currencyDate: '2020-07-10',
             currencyBase: 'Euro',
             currencyRate: '3.28',
+          },
+        });
+
+        done();
+      });
+    });
+    it('should respond the information about the IP address from 3th-party service mock', function (done) {
+      request.get('/api/ips/169.168.199.86').end((err, res) => {
+        assert.deepStrictEqual(res.body, {
+          success: true,
+          message: '',
+          data: {
+            countryName: 'Denmark',
+            countryCode: 'DK',
+            currencyName: 'Krone',
+            currencyCode: 'DKK',
+            currencyDate: '2020-06-04',
+            currencyBase: 'Sol',
+            currencyRate: '2.24',
           },
         });
 

@@ -64,14 +64,6 @@ const currenciesInfoMock = [
     currencyRate: '8.13',
   },
   {
-    countryCode: 'GA',
-    currencyName: 'Franc',
-    currencyCode: 'XAF',
-    currencyDate: '2020-07-10',
-    currencyBase: 'Euro',
-    currencyRate: '3.28',
-  },
-  {
     countryCode: 'CZ',
     currencyName: 'Koruna',
     currencyCode: 'CZK',
@@ -82,32 +74,53 @@ const currenciesInfoMock = [
 ];
 
 function findCurrencyInfoMock(countryCode) {
-  return currenciesInfoMock.find((currencyInfo) =>
+  const currencies = currenciesInfoMock.find((currencyInfo) =>
     currencyInfo.countryCode.match(countryCode)
   );
+  return {
+    currencies: [
+      { name: currencies.currencyName, code: currencies.currencyCode },
+    ],
+  };
 }
 
 function findExRateMock(currencyCode) {
-  return currenciesInfoMock.find((exRate) =>
+  const exRates = currenciesInfoMock.find((exRate) =>
     exRate.currencyCode.match(currencyCode)
   );
+  const result = { 
+    date: exRates.currencyDate,
+    base: exRates.currencyBase,
+    rates: {}
+  }
+  result.rates[currencyCode] = exRates.currencyRate;
+  return result;
 }
 
 class CurrenciesInfoServiceMock {
   async get(countryCode) {
-    const { currencyName, currencyCode } = findCurrencyInfoMock(countryCode);
+    const {
+      currencyName,
+      currencyCode,
+    } = currenciesInfoMock.find((currencyInfo) =>
+      currencyInfo.countryCode.match(countryCode)
+    );
     return Promise.resolve({ currencyName, currencyCode });
   }
 }
 class ExRateServiceMock {
   async get(currencyCode) {
-    const { currencyDate, currencyBase, currencyRate } = findExRateMock(
-      currencyCode
+    const {
+      currencyDate,
+      currencyBase,
+      currencyRate,
+    } = currenciesInfoMock.find((exRate) =>
+      exRate.currencyCode.match(currencyCode)
     );
     return Promise.resolve({
       currencyDate,
       currencyBase,
-      currencyRate
+      currencyRate,
     });
   }
 }

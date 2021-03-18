@@ -10,7 +10,7 @@ class ExchangeRateService {
   }
 
   async get(symbol) {
-    //TODO: VALIDATE FIRTS IN REDIS
+    //TODO: VALIDATE FIRTS IN CACHE
     const exRate = await this.httpRequest.get(
       RATES_ENDPOINT,
       `&symbols=${symbol}`

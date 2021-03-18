@@ -4,7 +4,7 @@ const { config } = require('../config/index');
 const URL = config.restcountriesUrl;
 const CODE_ENDPOINT = config.codeEndpoint;
 
-class CountriesInfoService {
+class CurrenciesInfoService {
   constructor() {
     this.httpRequest = new HttpRequest(URL);
   }
@@ -22,4 +22,4 @@ class CountriesInfoService {
   }
 }
 
-module.exports = CountriesInfoService;
+module.exports = CurrenciesInfoService;
