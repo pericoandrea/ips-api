@@ -43,7 +43,13 @@ NODE_ENV=production node server
 
 ## Use
 
+## Test
+
 ## Docker
+docker build -t ips-api-image .
+docker run --name ips-api --rm -p 3000:3000 ips-api-image
+#### DEV
+docker run --rm --name ips-api -p 3000:3000 -v //c/Users/peric/Documents/MELI/challenge-meli://usr/src/ ips-api-image
 
 ## License
 

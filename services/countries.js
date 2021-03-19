@@ -1,5 +1,3 @@
-//const { ipsMock } = require('../utils/mocks/ips'); // TODO: BORRAR MOCK
-
 const MongoLib = require('../lib/mongo');
 
 class CountriesService {

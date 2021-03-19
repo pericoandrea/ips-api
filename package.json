@@ -1,7 +1,7 @@
 {
-  "name": "challenge-meli",
+  "name": "ips-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "Provide information associated with an IP that allows the execution of response actions against fraud.",
   "main": "server.js",
   "scripts": {
     "dev:win": "set DEBUG=app:* && nodemon server",
@@ -21,6 +21,7 @@
     "axios": "^0.21.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "helmet": "^4.4.1",
     "mongodb": "^3.6.4",
     "swagger-ui-express": "^4.1.6"
   },
