@@ -14,16 +14,16 @@
     }
   ],
   "env": {
-    "PORT": "@port",
-    "DB_USER": "@db-user",
-    "DB_PASSWORD": "@db-password",
-    "DB_HOST": "@db-host",
-    "DB_NAME": "@db-name",
-    "IP2COUNTRY_URL": "@ip2country-url",
-    "IP2COUNTRY_ENDPOINT": "@ip2country-endpoint",
-    "RESTCOUNTRIES_URL": "@restcountries-url",
-    "CODE_ENDPOINT": "@code-endpoint",
-    "EXCHANGERATES_URL": "@exchangerates-url",
-    "RATES_ENDPOINT": "@rates-endpoint"
+    "PORT": "@ipsapi-port",
+    "DB_USER": "@ipsapi-db-user",
+    "DB_PASSWORD": "@ipsapi-db-password",
+    "DB_HOST": "@ipsapi-db-host",
+    "DB_NAME": "@ipsapi-db-name",
+    "IP2COUNTRY_URL": "@ipsapi-ip2country-url",
+    "IP2COUNTRY_ENDPOINT": "@ipsapi-ip2country-endpoint",
+    "RESTCOUNTRIES_URL": "@ipsapi-restcountries-url",
+    "CODE_ENDPOINT": "@ipsapi-code-endpoint",
+    "EXCHANGERATES_URL": "@ipsapi-exchangerates-url",
+    "RATES_ENDPOINT": "@ipsapi-rates-endpoint"
   }
 }

@@ -3,6 +3,9 @@
 
 Provide information associated with an IP that allows the execution of response actions against fraud.
 
+#### Example
+[https://ipsapi.vercel.app/api/ips/172.169.2.36](https://ipsapi.vercel.app/api/ips/172.169.2.36)
+
 ## Features
 The principal information retrive about the  IP address requested is:
 - Country Name
