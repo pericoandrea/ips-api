@@ -202,3 +202,5 @@ target/
 
 # End of https://www.toptal.com/developers/gitignore/api/node,linux,windows,macos
 
+
+.vercel
