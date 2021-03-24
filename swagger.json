@@ -1,22 +1,25 @@
 {
-  "swagger": "2.0",
+  "openapi": "3.0.0",
   "info": {
-    "description": "Provide information associated with an IP that allows the execution of response actions against fraud.",
-    "version": "1.0.0",
     "title": "IPs Information API",
+    "description": "Provide information associated with an IP that allows the execution of response actions against fraud.",
     "contact": {
       "email": "pericoandrea@gmail.com"
-    }
+    },
+    "version": "1.0.0-oas3"
   },
-  "host": "localhost:3000",
-  "basePath": "/api/ips",
+  "servers": [
+    {
+      "url": "http://ipsapi.vercel.app/api/ips"
+    },
+    {
+      "url": "https://ipsapi.vercel.app/api/ips"
+    }
+  ],
   "tags": [
     {
       "name": "IPs address information"
     }
-  ],
-  "schemes": [
-    "http"
   ],
   "paths": {
     "/{ip}": {
@@ -25,29 +28,101 @@
           "IPs address information"
         ],
         "summary": "Get and validate information about an IP address",
-        "description": "",
         "operationId": "validate",
-        "produces": [
-          "application/json"
-        ],
         "parameters": [
           {
-            "in": "path",
             "name": "ip",
-            "type": "string",
+            "in": "path",
+            "description": "A valid IP address V4 or V6",
             "required": true,
-            "description": "A valid IP address V4 or V6"
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": "Returns info related to the IP Address"
+            "description": "Returns info related to the IP Address",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IpInfo"
+                }
+              }
+            }
           },
           "400": {
             "description": "\\\"ip\\\" must be a valid ip address of one of the following versions [ipv4,ipv6] with a forbidden CIDR"
           },
           "404": {
             "description": "Resource Not Found"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "IpInfo": {
+        "required": [
+          "success"
+        ],
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "description": "Request status.",
+            "example": true
+          },
+          "message": {
+            "type": "string",
+            "description": "Information message",
+            "example": ""
+          },
+          "data": {
+            "$ref": "#/components/schemas/IpInfo_data"
+          }
+        }
+      },
+      "IpInfo_data": {
+        "type": "object",
+        "properties": {
+          "countryName": {
+            "type": "string",
+            "description": "The country name where the IP address is from",
+            "example": "Poland"
+          },
+          "countryCode": {
+            "type": "string",
+            "description": "The country code where the IP address is from",
+            "example": "PL"
+          },
+          "currencyName": {
+            "type": "string",
+            "description": "The currency name of the country where the IP address is from",
+            "example": "Zloty"
+          },
+          "currencyCode": {
+            "type": "string",
+            "description": "The currency code of the country where the IP address is from",
+            "example": "PLN"
+          },
+          "currencyDate": {
+            "type": "string",
+            "description": "The date when the exchange currency rate was load",
+            "example": "2021-01-08"
+          },
+          "currencyBase": {
+            "type": "string",
+            "description": "The currency code which the exchange currency rate is based on",
+            "example": "Euro"
+          },
+          "currencyRate": {
+            "type": "string",
+            "description": "The exchange currency rate of the country where the IP address is from",
+            "example": "3.75"
           }
         }
       }

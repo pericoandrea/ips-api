@@ -6,8 +6,8 @@
   "scripts": {
     "dev:win": "set DEBUG=app:* && nodemon server",
     "start:win": "set NODE_ENV=production && node server",
-    "dev": "DEBUG=app:* && nodemon server",
-    "start": "NODE_ENV=production && node server",
+    "dev": "DEBUG=app:* nodemon server",
+    "start": "NODE_ENV=production node server",
     "test": "mocha --exit",
     "test:cover": "nyc npm run test",
     "test:report": "nyc report --reporter=html"
