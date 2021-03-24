@@ -120,11 +120,11 @@ For production environments...
   [https://app.swaggerhub.com/apis-docs/hobbies/ips_information_api/1.0.0-oas3](https://app.swaggerhub.com/apis-docs/hobbies/ips_information_api/1.0.0-oas3)
 * #### Request Example
   ```
-  curl -X GET "http://ipsapi.vercel.app/api/ips/159.56.12.3" -H  "accept: application/json"
+  curl -X GET "https://ipsapi.vercel.app/api/ips/159.56.12.3" -H  "accept: application/json"
   ```
 * #### Reques URL
   ```
-  http://ipsapi.vercel.app/api/ips/159.56.12.3
+  https://ipsapi.vercel.app/api/ips/159.56.12.3
   ```
 * #### Response example for an IP address that was not queried before
   ```json
