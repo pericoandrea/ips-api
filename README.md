@@ -30,7 +30,10 @@ The API uses a number of open source projects to work properly:
 - [node.js] - evented I/O for the backend
 - [Express] - fast node.js network app framework
 - [Swagger] - API Documentation
+
+
 ------------
+
 ## Installation
 1. The API requires [Node.js](https://nodejs.org/) v10+ to run.
 
