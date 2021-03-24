@@ -1,11 +1,12 @@
 # IPs Information API
-Provide information associated with an IP that allows the execution of response actions against fraud.
+Provide information associated with an IP address that allows the execution response actions against fraud.
 
-## GIT Repository
+### GIT Repository
 [https://github.com/pericoandrea/ips-api](https://github.com/pericoandrea/ips-api)
 ```ssh
 git clone https://github.com/pericoandrea/ips-api.git
 ```
+------------
 ## Features
 The information retrive about the  IP address requested is:
 - *Country Name:* The country name where the IP address is come from
@@ -29,7 +30,7 @@ The API uses a number of open source projects to work properly:
 - [node.js] - evented I/O for the backend
 - [Express] - fast node.js network app framework
 - [Swagger] - API Documentation
-
+------------
 ## Installation
 1. The API requires [Node.js](https://nodejs.org/) v10+ to run.
 
@@ -54,10 +55,8 @@ The API uses a number of open source projects to work properly:
       The URL for foreign exchange rates and currency conversion JSON API [http://fixer.io/](http://fixer.io/)
     - `EXRATES_ACCESSKEY` Get an Fixer API key is required, Fixer allow get free API key at [https://fixer.io/signup/free](https://fixer.io/signup/free)
     - `RATES_ENDPOINT` *(default: latest?access_key=${process.env.EXRATES_ACCESSKEY}&)*
-
-      The Endpoint for foreign exchange rates and currency conversion JSON API, get an API key is required. `i.e latest?access_key=ca486fcddff586ba467256cbad7412cd&`
-
-      In another hand, this variable can be let undefined and it will be set by default with the EXRATES_ACCESSKEY environment variable value.
+      - The Endpoint for foreign exchange rates and currency conversion JSON API, get an API key is required. `i.e latest?access_key=ca486fcddff586ba467256cbad7412cd&`
+      - In another hand, this variable can be let undefined and it will be set by default with the EXRATES_ACCESSKEY environment variable value.
 
 3. Install the dependencies  and start the server.
 
@@ -96,7 +95,7 @@ For development enviroments...
   docker build -t ips-api-image -f dev.Dockerfile .
   ```
 
-* Installa NPM dependencies in your local repository before run dev container because the repository files on the host machine are mounted into the container with the flag -v to the container can watching the files changes and automatically restarting the application without has to rebuild and restart out container.
+* Install NPM dependencies in your local repository before run dev container because the repository files on the host machine are mounted into the container with the flag -v to the container can watching the files changes and automatically restarting the application without has to rebuild and restart the container.
   ```sh
   npm install
   ```
@@ -114,7 +113,7 @@ For production environments...
   ```sh
   docker run --name ips-api --rm -p 3000:3000 ips-api-image
   ```
-
+------------
 ## Usage
 
 * ### Swagger Documentation
@@ -152,5 +151,6 @@ For production environments...
   }
   ```
 
+------------
 ## License
 MIT
